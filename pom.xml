@@ -5,6 +5,31 @@
   <artifactId>semver</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>maven-plugin</packaging>
+  <name>Next Semver</name>
+  <description>Increments the version number based of release type.</description>
+
+  <licenses>
+    <license>
+      <name>The Unlicense</name>
+      <url>https://unlicense.org/</url>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <id>algomaster99</id>
+      <name>Aman Sharma</name>
+      <email>aman.sharma606@outlook.com</email>
+      <url>https://algomaster99.github.io/</url>
+      <organization>KTH Royal Institute of Technology</organization>
+      <organizationUrl>https://www.kth.se/</organizationUrl>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:git:https://github.com/algomaster99/next-semver/</connection>
+    <url>https://github.com/algomaster99/next-semver/.git</url>
+  </scm>
 
   <dependencies>
     <dependency>
