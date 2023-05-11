@@ -1,5 +1,19 @@
 ## Changelog
 
+## 🐛 Fixes
+- 7e6345a fix: update alpha from non-alpha version
+
+## 🧰 Tasks
+- cf989e1 chore: release 1.0.1
+- c64c43b chore: prepare for next development iteration
+
+
+## Contributors
+We'd like to thank the following people for their contributions:
+- Aman Sharma ([@algomaster99](https://github.com/algomaster99))
+
+## Changelog
+
 ## 🚀 Features
 - 6e69b59 feat: add release type parameter
 - 6b0eb35 feat: add grammar
