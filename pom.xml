@@ -7,6 +7,7 @@
   <packaging>maven-plugin</packaging>
   <name>Next Semver</name>
   <description>Increments the version number based of release type.</description>
+  <url>https://github.com/algomaster99/next-semver</url>
 
   <licenses>
     <license>
@@ -28,7 +29,7 @@
 
   <scm>
     <connection>scm:git:https://github.com/algomaster99/next-semver/</connection>
-    <url>https://github.com/algomaster99/next-semver/.git</url>
+    <url>https://github.com/algomaster99/next-semver.git</url>
   </scm>
 
   <dependencies>
