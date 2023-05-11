@@ -49,8 +49,6 @@ public class NextSemverMojo extends AbstractMojo {
         int majorInt = Integer.parseInt(major);
         int minorInt = Integer.parseInt(minor);
         int patchInt = Integer.parseInt(patch);
-        String tag = ((SemverParser.PreReleaseTaggedContext) preRelease).tag().getText();
-        int tagVersionInt = Integer.parseInt((((SemverParser.PreReleaseTaggedContext) preRelease).version).getText());
 
         switch (releaseType) {
             case MAJOR:
@@ -66,6 +64,14 @@ public class NextSemverMojo extends AbstractMojo {
                 patchInt++;
                 return String.format("%d.%d.%d", majorInt, minorInt, patchInt);
             case PRERELEASE:
+                if (preRelease == null) {
+                    return String.format("%d.%d.%d-%s.%d", majorInt, minorInt, patchInt, "alpha", 0);
+                }
+                String tag = ((SemverParser.PreReleaseTaggedContext) preRelease)
+                        .tag()
+                        .getText();
+                int tagVersionInt =
+                        Integer.parseInt((((SemverParser.PreReleaseTaggedContext) preRelease).version).getText());
                 tagVersionInt++;
                 return String.format("%d.%d.%d-%s.%d", majorInt, minorInt, patchInt, tag, tagVersionInt);
         }
