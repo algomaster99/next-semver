@@ -7,12 +7,22 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.codehaus.plexus.component.configurator.converters.basic.AbstractBasicConverter;
 
+/**
+ * Goal which increments the version number of a project.
+ */
 @Mojo(name = "next-semver")
 public class NextSemverMojo extends AbstractMojo {
 
+    /**
+     * The current version of the project.
+     */
     @Parameter(property = "currentVersion", required = true)
     private String currentVersion;
 
+    /**
+     * The type of release to perform.
+     * Options are: major, minor, patch, prerelease
+     */
     @Parameter(property = "releaseType", required = true)
     private ReleaseType releaseType;
 
