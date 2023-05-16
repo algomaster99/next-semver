@@ -1,32 +1,40 @@
 package io.github.algomaster99.semver;
 
+import java.util.concurrent.Callable;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
-import org.apache.maven.plugin.AbstractMojo;
-import org.apache.maven.plugins.annotations.Mojo;
-import org.apache.maven.plugins.annotations.Parameter;
-import org.codehaus.plexus.component.configurator.converters.basic.AbstractBasicConverter;
+import picocli.CommandLine;
 
 /**
- * Goal which increments the version number of a project.
+ * Increments the version number of a project.
  */
-@Mojo(name = "next-semver")
-public class NextSemverMojo extends AbstractMojo {
+@CommandLine.Command(
+        name = "next-semver",
+        mixinStandardHelpOptions = true,
+        description = "Increments the version number of a project.")
+public class NextSemverCommand implements Callable<Integer> {
 
     /**
      * The current version of the project.
      */
-    @Parameter(property = "currentVersion", required = true)
+    @CommandLine.Parameters(description = "The current version of the project.")
     private String currentVersion;
 
     /**
      * The type of release to perform.
-     * Options are: major, minor, patch, prerelease
      */
-    @Parameter(property = "releaseType", required = true)
+    @CommandLine.Option(
+            names = {"-r", "--release-type"},
+            description = "The type of release to perform. Options are: ${COMPLETION-CANDIDATES}.",
+            required = true)
     private ReleaseType releaseType;
 
-    public void execute() {
+    public static void main(String[] args) {
+        int exitCode = new CommandLine(new NextSemverCommand()).execute(args);
+        System.exit(exitCode);
+    }
+
+    public Integer call() {
         SemverLexer lexer = new SemverLexer(CharStreams.fromString(currentVersion));
 
         CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -43,6 +51,7 @@ public class NextSemverMojo extends AbstractMojo {
         String newVersion = updateVersion(major, minor, patch, preRelease);
 
         System.out.println(newVersion);
+        return 0;
     }
 
     private String updateVersion(String major, String minor, String patch, SemverParser.PreReleaseContext preRelease) {
@@ -77,16 +86,5 @@ public class NextSemverMojo extends AbstractMojo {
         }
 
         throw new RuntimeException("Unknown release type: " + releaseType);
-    }
-
-    static class ReleaseTypeConverter extends AbstractBasicConverter {
-        @Override
-        protected Object fromString(String releaseType) {
-            return ReleaseType.valueOf(releaseType.toUpperCase());
-        }
-
-        public boolean canConvert(Class<?> aClass) {
-            return aClass.equals(ReleaseType.class);
-        }
     }
 }

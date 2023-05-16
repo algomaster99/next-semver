@@ -8,43 +8,26 @@ the current version.
 ## Build
 
 ```bash
-mvn clean install
+mvn clean package
 ```
 
 ## Usage
 
 ```bash
-mvn io.github.algomaster99:semver:next-semver -DcurrentVersion=1.0.0 -DreleaseType=major
+java -jar target/semver-1.0.2-SNAPSHOT-jar-with-dependencies.jar -r major 1.0.0
 >>> 2.0.0
 ```
 
 ```
-Name: semver
-Description: (no description available)
-Group Id: io.github.algomaster99
-Artifact Id: semver
-Version: 0.0.1-SNAPSHOT
-Goal Prefix: semver
+Usage: next-semver [-hV] -r=<releaseType> <currentVersion>
+Increments the version number of a project.
+      <currentVersion>
+  -h, --help             Show this help message and exit.
+  -r, --release-type=<releaseType>
+                         The type of release to perform. Options are: major,
+                           minor, patch, preRelease.
+  -V, --version          Print version information and exit.
 
-This plugin has 1 goal:
-
-semver:next-semver
-  Description: Goal which increments the version number of a project.
-  Implementation: io.github.algomaster99.semver.NextSemverMojo
-  Language: java
-
-  Available parameters:
-
-    currentVersion
-      Required: true
-      User property: currentVersion
-      The current version of the project.
-
-    releaseType
-      Required: true
-      User property: releaseType
-      The type of release to perform. Options are: major, minor, patch,
-      prerelease
 ```
 
 ## Release Types
