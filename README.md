@@ -19,7 +19,7 @@ java -jar target/semver-1.0.2-SNAPSHOT-jar-with-dependencies.jar -r major 1.0.0
 ```
 
 ```
-Usage: next-semver [-hV] -r=<releaseType> <currentVersion>t/semver-1.0.2-SNAPSHOT-jar-with-dependencies.jar  --help                                                                                                                                                                          2 х  at 13:34:49 
+Usage: next-semver [-hV] -r=<releaseType> <currentVersion>
 Increments the version number of a project.
       <currentVersion>
   -h, --help             Show this help message and exit.
