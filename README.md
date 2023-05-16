@@ -30,7 +30,7 @@ This plugin has 1 goal:
 
 semver:next-semver
   Description: Goal which increments the version number of a project.
-  Implementation: io.github.algomaster99.semver.NextSemverMojo
+  Implementation: io.github.algomaster99.semver.NextSemverCommand
   Language: java
 
   Available parameters:

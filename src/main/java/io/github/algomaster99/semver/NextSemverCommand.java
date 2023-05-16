@@ -12,12 +12,12 @@ import picocli.CommandLine;
         name = "next-semver",
         mixinStandardHelpOptions = true,
         description = "Increments the version number of a project.")
-public class NextSemverMojo implements Callable<Integer> {
+public class NextSemverCommand implements Callable<Integer> {
 
     /**
      * The current version of the project.
      */
-    @CommandLine.Parameters(index = "0", description = "The current version of the project.")
+    @CommandLine.Parameters(description = "The current version of the project.")
     private String currentVersion;
 
     /**
@@ -25,8 +25,14 @@ public class NextSemverMojo implements Callable<Integer> {
      */
     @CommandLine.Option(
             names = {"-r", "--release-type"},
-            description = "The type of release to perform. Options are: ${COMPLETION-CANDIDATES}.")
+            description = "The type of release to perform. Options are: ${COMPLETION-CANDIDATES}.",
+            required = true)
     private ReleaseType releaseType;
+
+    public static void main(String[] args) {
+        int exitCode = new CommandLine(new NextSemverCommand()).execute(args);
+        System.exit(exitCode);
+    }
 
     public Integer call() {
         SemverLexer lexer = new SemverLexer(CharStreams.fromString(currentVersion));
