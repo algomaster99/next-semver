@@ -24,6 +24,6 @@ BUILD: 'bld' | 'build';
 TEST: 'test';
 EXPERIMENTAL: 'experimental';
 
-NUMBER: '0' | POSITIVE_DIGIT+;
+NUMBER: [0-9]+;
 
 IDENTIFIER: LETTER+;
